@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            .complete{
+                    display: inline-block;
+                    padding: 3px 12px;
+                    line-height: 1.3333333;
+                    color: wheat;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    margin-top: 15px;
+                    background-color: #337ab7;
+                    border: 1px solid transparent;
+            }
+        </style>
+            
+    </h:head>
+    <h:body>
+        <h1>User Detail</h1>
+        <h:form id="userDetailForm">
+
+			<h:panelGrid columns="3">
+
+                                Name: <h:inputText value="#{userdetail.name}" id="username"
+									required="true" 
+									requiredMessage="How may I address you sir"/> 
+                                                                        <h:message for="username"/>
+
+                                Address: <h:inputText value="#{userdetail.address}" id="address" 
+                                                      required="true" 
+                                                      requiredMessage="How may I address you sir"/> 
+                                                      <h:message for="address" />
+                                
+                                Phone: <h:inputText value="#{userdetail.phone}" 
+                                                    id="phoneno"
+                                                    converterMessage="Please enter a number"/>
+                                                    <h:message for="phoneno"/>
+                                                    
+                                Comments: <h:inputText value="#{userdetail.comment}"/> <h:panelGroup/>
+				
+				<h:panelGroup/>
+                                <h:commandButton value="Complete" action="#{userdetail.checkout(userdetail)}" styleClass="complete"/>
+				<h:panelGroup/>
+
+			</h:panelGrid>
+
+		</h:form>
+    </h:body>
+</html>
+

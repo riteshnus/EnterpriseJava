@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../web/css/shopping.css"></link>
+        <style>
+            tr {   
+                display: inline-block;
+                margin: 18px;
+            }
+            img {
+                display: block;
+                vertical-align: middle;
+                margin: auto;
+            }
+            span{
+                margin-right: 5px;
+            }
+            input[type="text"] {
+                width: 25%;
+                margin: 5%;
+            }
+            .addbutton{
+                    display: inline-block;
+                    padding: 3px 12px;
+                    line-height: 1.3333333;
+                    color: wheat;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    background-color: #337ab7;
+                    border: 1px solid transparent;
+            }
+            input.checkoutbutton{
+                    padding: 10px 16px;
+                    font-size: 18px;
+                    cursor: pointer;
+                    line-height: 1.3333333;
+                    border-radius: 6px;
+                    text-align: center;
+                    background-color: #8bbb4b;
+                    border: 1px solid transparent;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h1>Fruit list</h1>
+        <h:form>
+           <h:dataTable var="item" value="#{control.items}">
+                <h:column>
+                    <h:graphicImage value="#{item.img}"></h:graphicImage>
+                    <div style="text-align: center;">
+                    <h:outputText value="#{item.name}" class="io"></h:outputText>
+                    <h:inputText value="#{item.quantity}"></h:inputText>
+                    <h:commandButton value="Add" action="#{control.itemAdded(item)}" styleClass="addbutton"></h:commandButton>
+                    </div>
+		</h:column>
+            </h:dataTable>
+            <center><h:commandButton value="Checkout" action="#{control.checkout()}" styleClass="checkoutbutton"></h:commandButton></center>
+        </h:form>
+    </h:body>
+</html>
+

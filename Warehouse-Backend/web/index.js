@@ -8,8 +8,10 @@
 			return (!!this.socket);
 		}
 		this.connect = function(ws) {
+                    console.log("This is called")
 			this.socket = new WebSocket(ws);
 			this.socket.onmessage = function(msg) {
+                            console.log("This is called for msg "+ msg.data)
 				$rootScope.$apply(function() {
 					var data = JSON.parse(msg.data);
 					data.recvTimestamp = (new Date()).toString();

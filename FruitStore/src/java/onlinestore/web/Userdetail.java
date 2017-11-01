@@ -12,8 +12,12 @@ import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.JMSProducer;
+import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 import javax.jms.TextMessage;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -74,23 +78,24 @@ public class Userdetail implements Serializable{
         try (JMSContext jmsCtx = factory.createContext()) {
 			JMSProducer producer = jmsCtx.createProducer();
 			TextMessage txtMsg = jmsCtx.createTextMessage();
-			txtMsg.setText(new Date() + ">> ");
-			producer.send(warehousequeue, txtMsg);
+			//txtMsg.setText(new Date() + ">> ");
+			//producer.send(warehousequeue, txtMsg);
+                       
+                        JsonObjectBuilder jsonObjBuilder = Json.createObjectBuilder();
+                        jsonObjBuilder.add("name", userdetail.getName());
+                        jsonObjBuilder.add("address", userdetail.getAddress());
+                        jsonObjBuilder.add("comment", userdetail.getComment());
+                        jsonObjBuilder.add("phone", userdetail.getPhone());
+                        JsonObject jsonObj = jsonObjBuilder.build();
+                        txtMsg.setText(jsonObj.toString());
+                        producer.send(warehousequeue, txtMsg);
 
 		} catch (JMSException ex) {
 			ex.printStackTrace();
 		}
         
 		System.out.println("checkout: " + userdetail);
-//		FacesContext fc = FacesContext.getCurrentInstance();
-//		ExternalContext extCtx = fc.getExternalContext();
-//
-//		HttpSession sess = (HttpSession)extCtx.getSession(false);
-//
-//		//HttpServletRequest req = (HttpServletRequest)extCtx.getRequest();
-//		//HttpSession sess = req.getSession();
-//
-//		sess.invalidate();
+
 
 		return ("thankyou");
     }

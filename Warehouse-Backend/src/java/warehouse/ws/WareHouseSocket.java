@@ -31,8 +31,8 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/orders")
 public class WareHouseSocket {
     
-    @Resource(lookup = "concurrent/myThreadPool")
-	private ManagedScheduledExecutorService service;
+//    @Resource(lookup = "concurrent/myThreadPool")
+//	private ManagedScheduledExecutorService service;
 
 	private Session session;
         @Inject WebSocketSessionHandler sessionHandler;

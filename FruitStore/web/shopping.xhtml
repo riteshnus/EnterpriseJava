@@ -53,7 +53,7 @@
                     <div style="text-align: center;">
                     <h:outputText value="#{item.name}" class="io"></h:outputText>
                     <h:inputText value="#{item.quantity}"></h:inputText>
-                    <h:commandButton value="Add" action="#{control.itemAdded(item)}" styleClass="addbutton"></h:commandButton>
+                    <h:commandButton value="Add to cart" action="#{cart.itemAdded(item)}" styleClass="addbutton"></h:commandButton>
                     </div>
 		</h:column>
             </h:dataTable>

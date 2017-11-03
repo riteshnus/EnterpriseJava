@@ -95,7 +95,7 @@ public class Userdetail implements Serializable{
                         jsonObjBuilder.add("name", userdetail.getName());
                         jsonObjBuilder.add("address", userdetail.getAddress());
                         jsonObjBuilder.add("comment", userdetail.getComment());
-                        jsonObjBuilder.add("phone", userdetail.getPhone());
+                        jsonObjBuilder.add("phone", (userdetail.getPhone() == null)? 0 : userdetail.getPhone());
                         JsonArrayBuilder ItemJsonArray = Json.createArrayBuilder();
                         
                         cartlist.forEach((cart) -> {

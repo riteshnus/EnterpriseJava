@@ -27,13 +27,13 @@ import week5.web.sns.beans.UserBean;
 public class Friends {
     @EJB private UserBean userBean;
     
-   
-   
    @GET
-   @Path("/timeline/{username}")
+   @Path("/{username}")
    @Produces(MediaType.APPLICATION_JSON)
    public Response getFriendsPosts(@PathParam("username") String username){
        
        return Response.ok().build();
    }
+   
+   
 }

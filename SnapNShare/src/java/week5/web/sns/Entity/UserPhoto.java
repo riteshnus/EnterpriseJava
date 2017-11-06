@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,9 +28,10 @@ public class UserPhoto implements Serializable{
     @Id @Column(name="imagename")
     private String imageName;
     
-    @OneToOne
-    @JoinColumn(name = "username", referencedColumnName = "postedby")
-    private User postedByUser;
+    //@OneToOne
+  //  @JoinColumn(name = "username", referencedColumnName = "postedby")
+    @Column(name="postedby")
+    private String postedByUser;
     
     @Column(name="comment")
     private String comment;
@@ -48,13 +50,15 @@ public class UserPhoto implements Serializable{
         this.imageName = imageName;
     }
 
-    public User getPostedByUser() {
+    public String getPostedByUser() {
         return postedByUser;
     }
 
-    public void setPostedByUser(User postedByUser) {
+    public void setPostedByUser(String postedByUser) {
         this.postedByUser = postedByUser;
     }
+
+   
 
     public String getComment() {
         return comment;
@@ -80,16 +84,15 @@ public class UserPhoto implements Serializable{
         this.postTime = postTime;
     }
     
-    public JsonObject toJson() {
+    public JsonObjectBuilder toJson() {
 
 		//Builder
 		return (Json.createObjectBuilder()
 				.add("imageName", imageName)
-				.add("postedBy", postedByUser.getUsername())
+				.add("postedBy", postedByUser)
 				.add("comment", comment)
                                 .add("url", url)
-                                .add("postTime", postTime.toString())
-				.build());
+                                .add("postTime", postTime.toString()));
 	}
     
 }

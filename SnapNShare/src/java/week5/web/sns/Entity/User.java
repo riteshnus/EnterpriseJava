@@ -24,11 +24,12 @@ public class User implements Serializable{
     @Id @Column(name="username")
     String username;
     
+    
     @Column(name="friends")
     String friends;
 
-    @OneToOne(mappedBy = "postedByUser")
-    private UserPhoto userPhoto;
+   // @OneToOne(mappedBy = "postedByUser")
+  //  private UserPhoto userPhoto;
     
     public String getUsername() {
         return username;
@@ -46,13 +47,13 @@ public class User implements Serializable{
         this.friends = friends;
     }
 
-    public UserPhoto getUserPhoto() {
-        return userPhoto;
-    }
-
-    public void setUserPhoto(UserPhoto userPhoto) {
-        this.userPhoto = userPhoto;
-    }
+//    public UserPhoto getUserPhoto() {
+//        return userPhoto;
+//    }
+//
+//    public void setUserPhoto(UserPhoto userPhoto) {
+//        this.userPhoto = userPhoto;
+//    }
     
     
     

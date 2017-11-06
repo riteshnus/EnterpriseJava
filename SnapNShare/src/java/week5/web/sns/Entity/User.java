@@ -25,4 +25,22 @@ public class User implements Serializable{
     
     @Column(name="friends")
     String friends;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFriends() {
+        return friends;
+    }
+
+    public void setFriends(String friends) {
+        this.friends = friends;
+    }
+    
+    
 }

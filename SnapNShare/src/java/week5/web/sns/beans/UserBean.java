@@ -19,6 +19,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import week5.web.sns.Entity.User;
 import week5.web.sns.Entity.UserPhoto;
+import week5.web.sns.Entity.UserRegister;
 
 /**
  *
@@ -39,22 +40,50 @@ public class UserBean {
     }
     public JsonArray getFriendsPhotos(User user){
      User userFromdb = em.find(User.class, user.getUsername());
-        String friends = userFromdb.getFriends();
-        StringTokenizer token = new StringTokenizer(friends,",");
-        List<String> friendList = new ArrayList<>();
-        while (token.hasMoreElements()) {
-            friendList.add(token.nextElement().toString().trim());
-        }
+        JsonArrayBuilder photoArrayBuilder= Json.createArrayBuilder();
+        if(user.getFriends()!=null && !user.getFriends().isEmpty()){
+        List<String> friendList = getFriendsForUser(userFromdb.getFriends());
         TypedQuery<UserPhoto> query = em.createQuery(FRIENDS_QUERY, UserPhoto.class);
         query.setParameter("friendsList", friendList);
         query.setMaxResults(5);
         List<UserPhoto> postList = query.getResultList();
         System.out.println("userPhoto is"+ postList.toString());
-        JsonArrayBuilder photoArrayBuilder= Json.createArrayBuilder();
+        
         for(UserPhoto up: postList){
             photoArrayBuilder.add(up.toJson().build());
         }
+        }
         JsonArray photoArray = photoArrayBuilder.build();
         return photoArray;   
+    }
+    
+    public String setFriend(String username, String friends){
+        System.out.println(friends);
+        UserRegister user = em.find(UserRegister.class, username);
+        user.setFriends(friends);
+        return friends;
+     }
+    
+    public JsonArray getFriends(User user){
+        User userFromDb = getUser(user);
+        JsonArrayBuilder friendsArrayBuilder= Json.createArrayBuilder();
+        if(user.getFriends()!=null && !user.getFriends().isEmpty()){
+        List<String> friendList = getFriendsForUser(userFromDb.getFriends());
+         for(String friend: friendList){
+             friendsArrayBuilder.add(friend);
+         }
+         
+        }
+        return friendsArrayBuilder.build();
+    }
+    
+    private List<String> getFriendsForUser(String friends){
+       
+        StringTokenizer token = new StringTokenizer(friends,",");
+        List<String> friendList = new ArrayList<>();
+        while (token.hasMoreElements()) {
+            friendList.add(token.nextElement().toString().trim());
+        }
+        return friendList;
     }
 }

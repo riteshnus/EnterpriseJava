@@ -10,7 +10,7 @@ import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import week5.web.sns.Entity.User;
-
+import week5.web.sns.Entity.UserRegister;
 /**
  *
  * @author siddharth
@@ -27,4 +27,11 @@ public class UserBean {
     public JsonObject getFriendsPhotos(User user){
      return null;   
     }
+    
+    public String setFriend(String username, String friends){
+        System.out.println(friends);
+        UserRegister user = em.find(UserRegister.class, username);
+        user.setFriends(friends);
+        return friends;
+     }
 }

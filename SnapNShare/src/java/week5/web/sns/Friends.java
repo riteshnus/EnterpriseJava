@@ -4,10 +4,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.json.JsonObject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -36,4 +39,23 @@ public class Friends {
        
        return Response.ok().build();
    }
+   
+    @POST
+    @Path("/{userID}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response post(@PathParam("userID") String user, String body){
+        //System.out.println(user);
+        //System.out.println(body);
+        String friendArray = userBean.setFriend(user,body);
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+        String[] names = friendArray.split(",");
+        System.out.println(names);
+        for(int i=0; i<names.length; i++){
+            arrayBuilder.add(names[i]);
+        }
+            JsonArray io = arrayBuilder.build();
+        return Response.status(Response.Status.OK).entity(io).build();
+        }
+
+     
 }

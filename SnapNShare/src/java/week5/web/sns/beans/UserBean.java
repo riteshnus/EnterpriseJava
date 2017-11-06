@@ -66,10 +66,12 @@ public class UserBean {
     
     public JsonArray getFriends(User user){
         User userFromDb = getUser(user);
+        System.out.println("friends are"+ userFromDb.getFriends());
         JsonArrayBuilder friendsArrayBuilder= Json.createArrayBuilder();
-        if(user.getFriends()!=null && !user.getFriends().isEmpty()){
+        if(userFromDb.getFriends()!=null && !userFromDb.getFriends().isEmpty()){
         List<String> friendList = getFriendsForUser(userFromDb.getFriends());
          for(String friend: friendList){
+             System.out.println("friends are" + friend);
              friendsArrayBuilder.add(friend);
          }
          

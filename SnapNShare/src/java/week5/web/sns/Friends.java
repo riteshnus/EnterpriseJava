@@ -32,7 +32,7 @@ public class Friends {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/username")
+    @Path("/{username}")
     public Response getfriendsList(@PathParam("username") String username){
         User user = new User();
         user.setUsername(username);

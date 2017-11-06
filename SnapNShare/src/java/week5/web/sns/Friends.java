@@ -22,10 +22,9 @@ public class Friends {
     
     
         @GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public void get() {
-//
-//		
-//		return Response.ok();
+	@Produces(MediaType.TEXT_PLAIN)
+	public String get() {
+            System.out.println("ritesh");
+            return ("ri");
 	}
 }

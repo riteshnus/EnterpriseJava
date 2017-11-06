@@ -24,7 +24,7 @@ public class Friends {
         @GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String get() {
-            System.out.println("ritesh");
+            System.out.println("dff");
             return ("ri");
 	}
 }

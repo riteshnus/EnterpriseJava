@@ -18,7 +18,7 @@ import javax.inject.Named;
  */
 @RequestScoped
 @Named("control")
-public class StoreController {
+public class storeController {
     
     private List<Cart> items = new LinkedList<>();
     

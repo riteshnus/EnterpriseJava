@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +27,9 @@ public class User implements Serializable{
     @Column(name="friends")
     String friends;
 
+    @OneToOne(mappedBy = "postedByUser")
+    private UserPhoto userPhoto;
+    
     public String getUsername() {
         return username;
     }
@@ -41,6 +45,15 @@ public class User implements Serializable{
     public void setFriends(String friends) {
         this.friends = friends;
     }
+
+    public UserPhoto getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(UserPhoto userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+    
     
     
 }

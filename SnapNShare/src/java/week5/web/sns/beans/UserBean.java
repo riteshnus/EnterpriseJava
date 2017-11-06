@@ -6,6 +6,7 @@
 package week5.web.sns.beans;
 
 import javax.ejb.Stateless;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import week5.web.sns.Entity.User;
@@ -21,5 +22,9 @@ public class UserBean {
     
     public void createUser(User user){
         em.persist(user);
+    }
+    
+    public JsonObject getFriendsPhotos(User user){
+     return null;   
     }
 }

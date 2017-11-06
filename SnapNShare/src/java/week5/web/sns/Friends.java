@@ -27,14 +27,13 @@ import week5.web.sns.beans.UserBean;
 public class Friends {
     @EJB private UserBean userBean;
     
-   @POST
-   @Path("/register/{username}")
-   @Produces(MediaType.TEXT_PLAIN)
-   //@Consumes(MediaType.APPLICATION_JSON)
-   public String registerUser(@PathParam("username") String username){
-       User user = new User();
-       user.setUsername(username);
-       userBean.createUser(user);
-       return ("bi");
+   
+   
+   @GET
+   @Path("/timeline/{username}")
+   @Produces(MediaType.APPLICATION_JSON)
+   public Response getFriendsPosts(@PathParam("username") String username){
+       
+       return Response.ok().build();
    }
 }
